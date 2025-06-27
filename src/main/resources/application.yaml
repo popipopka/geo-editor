@@ -9,3 +9,8 @@ spring:
 
   liquibase:
     change-log: classpath:/db/changelog/main-changelog.yaml
+
+mybatis:
+  type-handlers-package: ru.vistar.geoeditor.data.mapper.handler
+  configuration:
+    map-underscore-to-camel-case: true
