@@ -1,0 +1,47 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0
+      author: popipopka
+      changes:
+        - sql:
+            sql: >
+              create type object_type as enum (
+                'POINT',
+                'LINE',
+                'POLYGON'
+              );
+      rollback:
+        - sql:
+            sql: drop type is exists geo_object_type;
+
+  - changeSet:
+      id: 1
+      author: popipopka
+      changes:
+        - createTable:
+            tableName: objects
+            columns:
+              - column:
+                  name: id
+                  type: bigserial
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(64)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: type
+                  type: object_type
+                  constraints:
+                    nullable: false
+              - column:
+                  name: coords
+                  type: jsonb
+                  constraints:
+                    nullable: false
+      rollback:
+        - dropTable:
+            tableName: objects
