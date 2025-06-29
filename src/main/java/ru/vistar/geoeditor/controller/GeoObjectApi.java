@@ -11,7 +11,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 import ru.vistar.geoeditor.core.dto.GeoObjectData;
-import ru.vistar.geoeditor.core.dto.GeoObjectPayload;
+import ru.vistar.geoeditor.core.dto.GeoObjectCreateRequest;
+import ru.vistar.geoeditor.core.dto.GeoObjectUpdateRequest;
 
 import java.util.List;
 
@@ -51,7 +52,7 @@ public interface GeoObjectApi {
             }
     )
     @PostMapping
-    ResponseEntity<Void> create(@Valid @RequestBody GeoObjectPayload payload, UriComponentsBuilder uriBuilder);
+    ResponseEntity<Void> create(@Valid @RequestBody GeoObjectCreateRequest request, UriComponentsBuilder uriBuilder);
 
     @Operation(
             summary = "Обновить географический объект",
@@ -63,7 +64,7 @@ public interface GeoObjectApi {
             }
     )
     @PutMapping("/{id}")
-    ResponseEntity<Void> update(@Positive @PathVariable Long id, @Valid @RequestBody GeoObjectPayload payload);
+    ResponseEntity<Void> update(@Positive @PathVariable Long id, @Valid @RequestBody GeoObjectUpdateRequest request);
 
     @Operation(
             summary = "Удалить географический объект",

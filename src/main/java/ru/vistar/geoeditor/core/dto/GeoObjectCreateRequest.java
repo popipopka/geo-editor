@@ -11,8 +11,8 @@ import ru.vistar.geoeditor.core.model.GeoObjectType;
 import java.util.List;
 
 @Data
-@Schema(description = "Данные для создания или обновления географического объекта")
-public class GeoObjectPayload {
+@Schema(description = "Данные для создания географического объекта")
+public class GeoObjectCreateRequest {
 
     @NotBlank
     @Size(min = 1, max = 64)
@@ -24,5 +24,6 @@ public class GeoObjectPayload {
     private GeoObjectType type;
 
     @NotEmpty
+    @Schema(description = "Координаты географического объекта")
     private List<GeoCoordsData> coords;
 }

@@ -4,8 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
+import ru.vistar.geoeditor.core.dto.GeoObjectCreateRequest;
 import ru.vistar.geoeditor.core.dto.GeoObjectData;
-import ru.vistar.geoeditor.core.dto.GeoObjectPayload;
+import ru.vistar.geoeditor.core.dto.GeoObjectUpdateRequest;
 import ru.vistar.geoeditor.core.service.GeoObjectService;
 
 import java.util.List;
@@ -30,8 +31,8 @@ public class GeoObjectRestController implements GeoObjectApi {
     }
 
     @Override
-    public ResponseEntity<Void> create(GeoObjectPayload payload, UriComponentsBuilder uriBuilder) {
-        var id = service.create(payload);
+    public ResponseEntity<Void> create(GeoObjectCreateRequest request, UriComponentsBuilder uriBuilder) {
+        var id = service.create(request);
         return ResponseEntity
                 .created(uriBuilder
                         .pathSegment("api", "geo-objects", "{id}")
@@ -40,8 +41,8 @@ public class GeoObjectRestController implements GeoObjectApi {
     }
 
     @Override
-    public ResponseEntity<Void> update(Long id, GeoObjectPayload payload) {
-        service.update(id, payload);
+    public ResponseEntity<Void> update(Long id, GeoObjectUpdateRequest request) {
+        service.update(id, request);
         return ResponseEntity.ok().build();
     }
 
