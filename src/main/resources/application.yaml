@@ -4,8 +4,8 @@ spring:
 
   datasource:
     url: ${POSTGRES_URL:jdbc:postgresql://localhost:5433/geo}
-    username: ${POSTGRES_PASSWORD:root}
-    password: ${POSTGRES_PASSWORD:123456}
+    username: root
+    password: 123456
 
   liquibase:
     change-log: classpath:/db/changelog/main-changelog.yaml
